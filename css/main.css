@@ -17,11 +17,6 @@ h1 {
 	font-size: 22pt;
 }
 
-#main-wrapper {
-	display: flex;
-	gap: 10px;
-}
-
 #calc-wrapper {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -83,15 +78,25 @@ button:active {
 	overflow-x: scroll;
 }
 
+.previous,
 .current {
-	height: 100%;
-	font-size: 26pt;
-	color: #637d0e;
 	text-align: right;
-	padding-top: 15px;
-	padding: 10px;
+	padding-right: 10px;
 	font-family: Arial, Helvetica, sans-serif;
 	letter-spacing: 1px;
+}
+
+.previous {
+	height: 40%;
+	font-size: 14pt;
+	color: #aeb694;
+	padding-top: 3px;
+}
+
+.current {
+	height: 60%;
+	font-size: 20pt;
+	color: #637d0e;
 }
 
 .operand-plus {
@@ -144,19 +149,4 @@ button:active {
 }
 .calc-equal {
 	grid-area: 3 / 4 / 7 / 5;
-}
-
-.previous {
-	height: 400px;
-	width: 80px;
-	background-color: rgb(173, 195, 141);
-	font-size: 14pt;
-	color: #fff;
-	border-radius: 0.25rem;
-}
-
-p {
-	padding: 10px;
-	margin: 0;
-	width: 100%;
 }

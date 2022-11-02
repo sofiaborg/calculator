@@ -1,6 +1,5 @@
 //TODO
-//ifall man klickar på * ska man hitta talet som man satte innan *. Sen beräkna det talet * nya talet man lägger till.
-//om sista tecknet i previous är en operator (ex. minus) - beräkna previous minus current
+//gör previous till endast en variabel. Du behöver inte skriva ut previous i domen
 
 class Calc {
 	constructor(constructorPrevious, constructorCurrect) {
