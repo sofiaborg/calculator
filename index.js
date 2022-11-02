@@ -1,3 +1,7 @@
+//TODO
+//ifall man klickar på * ska man hitta talet som man satte innan *. Sen beräkna det talet * nya talet man lägger till.
+//om sista tecknet i previous är en operator (ex. minus) - beräkna previous minus current
+
 class Calc {
 	constructor(constructorPrevious, constructorCurrect) {
 		this.constructorPrevious = constructorPrevious;
@@ -14,41 +18,31 @@ class Calc {
 	appendNumber(number) {
 		if (number === "." && this.currentContent.includes(".")) return;
 		this.currentContent = this.currentContent + number;
+
+		const operators = this.previousContent
+			.split(/[^-|+|\÷|\×]/)
+			.filter((e) => e);
+
+		operators.forEach((operator) => {
+			if (
+				this.previousContent.charAt(this.previousContent.length - 1) ===
+				operator
+			) {
+				this.calculate();
+			}
+		});
 	}
 
 	chooseOperand(operand) {
-		// const operators = this.previousContent
-		// 	.split(/[^-|+|\÷|\×]/)
-		// 	.filter((e) => e);
-
-		// //om current-content inte innehåller ett nr, ska man ej kunna klicka på operand
-		// operators.forEach((operator) => {
-		// 	if (
-		// 		this.previousContent.charAt(this.previousContent.length - 1) ===
-		// 		operator
-		// 	) {
-		// 		operand = "";
-		// 	}
-		// });
-
-		if (this.currentContent == "" && this.previousContent == "") {
-			this.operand = "";
-
-			//om man redan har klickat på en operand ska man inte kunna klcka igen
-		} else {
-			//operanden från Class Calc sätts till vaiablen operand, som innehåller det operand man klickat på (+,-,/,*)
-			this.operand = operand;
-			//när man klickar på en operand så sätts previous content till de siffror som tidigare låg i current (som sattes i appendNumber-funktionen)
-			this.previousContent =
-				this.previousContent + this.currentContent + operand;
-			//current blir tomt i väntan på att ytteliga siffror ska klickas på
-			this.currentContent = "";
-		}
+		this.operand = operand;
+		this.previousContent = this.previousContent + this.currentContent + operand;
+		//current becomes empty each time you click on a operand
+		this.currentContent = "";
 	}
 
 	calculate() {
 		let result;
-		//convert from string to float digit
+		//convert from string to a float point number - WHAT'S THE DIFFERENCE IF I USE PARSEINT? WORKS THE SAME?..
 		const prev = parseFloat(this.previousContent);
 		const curr = parseFloat(this.currentContent);
 		//check if theres anything to calculate
@@ -74,8 +68,8 @@ class Calc {
 				return;
 		}
 		console.log(result);
-		this.previousContent = this.previousContent + this.currentContent;
-		this.currentContent = result;
+		this.previousContent = result;
+		this.currentContent = "";
 		this.operand = undefined;
 	}
 
@@ -92,7 +86,7 @@ let clearBtn = document.querySelector(".calc-clear");
 let previousToConstructor = document.querySelector(".previous");
 let currentToConstructor = document.querySelector(".current");
 
-//create new Calc-object and add eventlisteners to the different buttons... A BIT LIKE STATE YO?!
+//create new Calc-object and add eventlisteners to the different buttons
 const calculator = new Calc(previousToConstructor, currentToConstructor);
 
 //number-buttons
