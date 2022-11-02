@@ -1,5 +1,5 @@
 //TODO
-//gör previous till endast en variabel. Du behöver inte skriva ut previous i domen
+//gör previous till endast en variabel. Du behöver inte skriva ut previous i
 
 class Calc {
 	constructor(constructorPrevious, constructorCurrect) {
